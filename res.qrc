@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>imgs/08button0.png</file>
+        <file>imgs/08button1.png</file>
+        <file>imgs/17button0.png</file>
+        <file>imgs/17button1.png</file>
+        <file>imgs/disabled.png</file>
+        <file>imgs/enabled.png</file>
+        <file>imgs/mpnbg.png</file>
+        <file>imgs/mpnbg1.png</file>
+        <file>modlist.ini</file>
+    </qresource>
+</RCC>

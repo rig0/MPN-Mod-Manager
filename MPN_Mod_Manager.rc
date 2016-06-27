@@ -1,0 +1,4 @@
+#include <windows.h>
+
+IDI_ICON_1            ICON                    "mpn.ico"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "MPN_Mod_Manager.exe.manifest"

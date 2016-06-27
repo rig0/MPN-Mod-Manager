@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ModManager</class>
+ <widget class="QMainWindow" name="ModManager">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>550</width>
+    <height>275</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>550</width>
+    <height>275</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>550</width>
+    <height>275</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MPN Mod Manager</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow#ModManager
+{
+   background-image: url(&quot;:/res/imgs/mpnbg1.png&quot;);
+}
+QGraphicsView#ModStatus
+{
+    background-color:rgba(0, 0, 0, 0);
+}
+QPushButton#mad08
+{
+   background-color:rgba(0, 0, 0, 0);
+   background-image: url(&quot;:/res/imgs/08button0.png&quot;);
+}
+QPushButton:hover#mad08
+{
+   background-color:rgba(0, 0, 0, 0);
+   background-image: url(&quot;:/res/imgs/08button1.png&quot;);
+}
+
+QPushButton#mad17
+{
+   background-color:rgba(0, 0, 0, 0);
+   background-image: url(&quot;:/res/imgs/17button0.png&quot;);
+}
+QPushButton:hover#mad17
+{
+   background-color:rgba(0, 0, 0, 0);
+   background-image: url(&quot;:/res/imgs/17button1.png&quot;);
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="mad17">
+    <property name="geometry">
+     <rect>
+      <x>287</x>
+      <y>141</y>
+      <width>200</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="mad08">
+    <property name="geometry">
+     <rect>
+      <x>63</x>
+      <y>141</y>
+      <width>200</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="ModStatus">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>70</y>
+      <width>230</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="interactive">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
