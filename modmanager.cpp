@@ -21,7 +21,8 @@ const char* ModDir_cc= ModDir_s.c_str();
 const char* UserINI_cc = UserINI_s.c_str();
 //const char* LocalINI_cc = LocalINI_s.c_str();
 
-inline bool FileStatus (const string& fileName) {
+inline bool FileStatus (const string& fileName)
+{
   struct stat buffer;
   return (stat (fileName.c_str(), &buffer) == 0);
 }
