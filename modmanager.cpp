@@ -21,34 +21,31 @@ const char* ModDir_cc= ModDir_s.c_str();
 const char* UserINI_cc = UserINI_s.c_str();
 //const char* LocalINI_cc = LocalINI_s.c_str();
 
-inline bool FileStatus (const string& fileName);
+inline bool FileStatus (const string& fileName) {
+  struct stat buffer;
+  return (stat (fileName.c_str(), &buffer) == 0);
+}
 
 ModManager::ModManager(QWidget *parent) :
-    QMainWindow(parent /*Qt::FramelessWindowHint*/),
+    QMainWindow(parent /*, Qt::FramelessWindowHint */ ),
     ui(new Ui::ModManager)
 {
     ui->setupUi(this);
-    if (FileStatus("C:\\Users\\ADMIN\\Documents\\Madden NFL 08\\UIS_LIB_COMMON.dat") == 1)
+    string firstMod = MadDir_s + "DB_TEAMS.dat";
+    string lastMod = MadDir_s + "ver.zip";
+    if ((FileStatus(firstMod)) && (FileStatus(lastMod)) == 1)
         {
             ui->ModStatus->setStyleSheet("QGraphicsView {background-image: url("":/res/imgs/enabled.png""); }");
-
         }
         else
         {
             ui->ModStatus->setStyleSheet("QGraphicsView {background-image: url("":/res/imgs/disabled.png""); }");
-
         }
-
 }
 
 ModManager::~ModManager()
 {
     delete ui;
-}
-
-inline bool FileStatus (const string& fileName) {
-  struct stat buffer;
-  return (stat (fileName.c_str(), &buffer) == 0);
 }
 
 void ModManager::on_mad08_clicked()
