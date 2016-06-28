@@ -36,14 +36,14 @@ ModManager::ModManager(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //----------MAKING SURE REQUIRED FOLDERS AND FILES EXSIST BEFORE RUNNING----------//
+    //----------MAKING SURE REQUIRED FOLDERS AND FILES EXIST BEFORE RUNNING----------//
 
     if (FileStatus(MadDir_s) == 0)
         {
             QMessageBox msgBox;
             msgBox.setIconPixmap(QPixmap(":/res/imgs/error.png"));
             msgBox.setWindowTitle("Madden NFL 08 Directory not found!");
-            msgBox.setText("\"Documents/Madden NFL 08\" directory does not exsist!");
+            msgBox.setText("\"Documents/Madden NFL 08\" directory does not exist!");
             msgBox.exec();
             exit (EXIT_FAILURE);
         }
@@ -52,7 +52,7 @@ ModManager::ModManager(QWidget *parent) :
             QMessageBox msgBox;
             msgBox.setIconPixmap(QPixmap(":/res/imgs/error.png"));
             msgBox.setWindowTitle("Mods Directory not found!");
-            msgBox.setText("\"Documents/Madden NFL 08/Mods\" directory does not exsist!");
+            msgBox.setText("\"Documents/Madden NFL 08/Mods\" directory does not exist!");
             msgBox.exec();
             exit (EXIT_FAILURE);
         }
