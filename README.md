@@ -4,11 +4,11 @@
 
 **How to install:**
 
-1. Extract "MPN-Mod-Managerv1.0.0.zip" 
+1. Extract "MPN-Mod-ManagerV1.0.0.zip" 
 
 2. Move "Manager" folder to "Documents/Madden NFL 08/Mods/"
 
-3. For easy accesibility you can do do either one of the three:
+3. For easy accessibility you can do do either one of the three:
 
 	-Right Click->Send to->Desktop
 
