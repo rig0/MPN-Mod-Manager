@@ -1,8 +1,10 @@
 ##--------------------MPN Mod Manager by RamboRigs--------------------
 
+####------------------------Version 1.0.0 (Initial Release)------------------------
+
 **How to install:**
 
-1. Extract "MPN-Mod-Manager.zip" 
+1. Extract "MPN-Mod-Managerv1.0.0.zip" 
 
 2. Move "Manager" folder to "Documents/Madden NFL 08/Mods/"
 
