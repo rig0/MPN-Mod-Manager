@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <sys/stat.h>
 #include <QMessageBox>
+#include <QFile>
 
 //----------MPN MOD MANAGER BY RAMBORIGS----------//
 
@@ -17,9 +18,11 @@ char endlist = '[';
 string UsrDir_s = getenv("USERPROFILE");
 string MadDir_s = UsrDir_s + "\\Documents\\Madden NFL 08\\";
 string ModDir_s = MadDir_s + "Mods\\";
+string ManDir_s = ModDir_s + "Manager\\";
 string UserINI_s = ModDir_s + "Manager\\modlist.ini"; //--LIST OF ALL MODS LOCATED HERE--//
 const char* MadDir_cc= MadDir_s.c_str();
 const char* ModDir_cc= ModDir_s.c_str();
+const char* ManDir_cc= ManDir_s.c_str();
 const char* UserINI_cc = UserINI_s.c_str();
 
 inline bool FileStatus (const string& fileName)
@@ -58,6 +61,11 @@ ModManager::ModManager(QWidget *parent) :
             msgBox.exec();
             exit (EXIT_FAILURE);
         }
+    if (FileStatus(UserINI_s) == 0)
+        {
+            QFile::copy(":/res/modlist.ini", UserINI_cc);
+        }
+
 
     //----------CHECKING IF MODS ARE ENABLED UPON LAUNCHING----------//
 
