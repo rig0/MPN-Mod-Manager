@@ -9,5 +9,7 @@
         <file>imgs/mpnbg.png</file>
         <file>imgs/mpnbg1.png</file>
         <file>modlist.ini</file>
+        <file>imgs/error.png</file>
+        <file>imgs/info.png</file>
     </qresource>
 </RCC>
