@@ -6,6 +6,9 @@
 #include <fstream>
 #include <windows.h>
 #include <sys/stat.h>
+#include <QMessageBox>
+
+//----------MPN MOD MANAGER BY RAMBORIGS----------//
 
 using namespace std;
 
@@ -14,12 +17,10 @@ char endlist = '[';
 string UsrDir_s = getenv("USERPROFILE");
 string MadDir_s = UsrDir_s + "\\Documents\\Madden NFL 08\\";
 string ModDir_s = MadDir_s + "Mods\\";
-string UserINI_s = ModDir_s + "Manager\\modlist.ini";
-//string LocalINI_s = "modlist.ini";
+string UserINI_s = ModDir_s + "Manager\\modlist.ini"; //--LIST OF ALL MODS LOCATED HERE--//
 const char* MadDir_cc= MadDir_s.c_str();
 const char* ModDir_cc= ModDir_s.c_str();
 const char* UserINI_cc = UserINI_s.c_str();
-//const char* LocalINI_cc = LocalINI_s.c_str();
 
 inline bool FileStatus (const string& fileName)
 {
@@ -32,9 +33,37 @@ ModManager::ModManager(QWidget *parent) :
     ui(new Ui::ModManager)
 {
     ui->setupUi(this);
-    string firstMod = MadDir_s + "DB_TEAMS.dat";
-    string lastMod = MadDir_s + "ver.zip";
-    if ((FileStatus(firstMod)) && (FileStatus(lastMod)) == 1)
+
+    //----------MAKING SURE REQUIRED FOLDERS AND FILES EXIST BEFORE RUNNING----------//
+
+    if (FileStatus(MadDir_s) == 0)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("\"Documents/Madden NFL 08\" directory does not exsist!");
+            msgBox.exec();
+            exit (EXIT_FAILURE);
+        }
+    if (FileStatus(ModDir_s) == 0)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("\"Documents/Madden NFL 08/Mods\" directory does not exsist!");
+            msgBox.exec();
+            exit (EXIT_FAILURE);
+        }
+    string firstMod = ModDir_s + "DB_TEAMS.dat";
+    if (FileStatus(firstMod) == 0)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("\"Documents/Madden NFL 08/Mods\" appears to be missing mods. Re-download the files.");
+            msgBox.exec();
+            exit (EXIT_FAILURE);
+        }
+
+    //----------CHECKING IF MODS ARE ENABLED UPON LAUNCHING----------//
+
+    string firstMad = MadDir_s + "DB_TEAMS.dat";
+    string lastMad = MadDir_s + "ver.zip";
+    if ((FileStatus(firstMad)) && (FileStatus(lastMad)) == 1)
         {
             ui->ModStatus->setStyleSheet("QGraphicsView {background-image: url("":/res/imgs/enabled.png""); }");
         }
@@ -48,6 +77,8 @@ ModManager::~ModManager()
 {
     delete ui;
 }
+
+//----------REMOVING SYMLINKS UPON CLIKING 'ORIGINAL' BUTTON----------//
 
 void ModManager::on_mad08_clicked()
 {
@@ -68,6 +99,8 @@ void ModManager::on_mad08_clicked()
         ModList2.close();
         ui->ModStatus->setStyleSheet("QGraphicsView {background-image: url("":/res/imgs/disabled.png""); }");
 }
+
+//----------CREATING SYMLINKS UPON CLIKING 'MODDED' BUTTON----------//
 
 void ModManager::on_mad17_clicked()
 {
