@@ -26,6 +26,8 @@ RC_ICONS = mpn.ico
 RESOURCES += \
     res.qrc
 
+VERSION = 1.0.0.0
+
 #DISTFILES += \ #---List of files to for UAC---#
 #   MPN_Mod_Manager.rc \
 #   MPN_Mod_Manager.exe.manifest
