@@ -21,12 +21,12 @@ FORMS    += modmanager.ui
 
 RC_ICONS = mpn.ico
 
-#RC_FILE = MPN_Mod_Manager.rc
+#RC_FILE = MPN_Mod_Manager.rc #---Resource file to force UAC---#
 
 RESOURCES += \
     res.qrc
 
-#DISTFILES += \
+#DISTFILES += \ #---List of files to for UAC---#
 #   MPN_Mod_Manager.rc \
 #   MPN_Mod_Manager.exe.manifest
 

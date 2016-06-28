@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <QMessageBox>
 #include <QFile>
+#include <QDir>
 
 //----------MPN MOD MANAGER BY RAMBORIGS----------//
 
@@ -18,12 +19,10 @@ char endlist = '[';
 string UsrDir_s = getenv("USERPROFILE");
 string MadDir_s = UsrDir_s + "\\Documents\\Madden NFL 08\\";
 string ModDir_s = MadDir_s + "Mods\\";
-string ManDir_s = ModDir_s + "Manager\\";
-string UserINI_s = ModDir_s + "Manager\\modlist.ini"; //--LIST OF ALL MODS LOCATED HERE--//
+QString curDir_qs = QDir::currentPath();
+QString curINI_qs = curDir_qs + "/modlist.ini";
 const char* MadDir_cc= MadDir_s.c_str();
 const char* ModDir_cc= ModDir_s.c_str();
-const char* ManDir_cc= ManDir_s.c_str();
-const char* UserINI_cc = UserINI_s.c_str();
 
 inline bool FileStatus (const string& fileName)
 {
@@ -61,11 +60,10 @@ ModManager::ModManager(QWidget *parent) :
             msgBox.exec();
             exit (EXIT_FAILURE);
         }
-    if (FileStatus(UserINI_s) == 0)
+    if (FileStatus(curINI_qs.toStdString()) == 0)
         {
-            QFile::copy(":/res/modlist.ini", UserINI_cc);
+            QFile::copy(":/res/modlist.ini", curINI_qs);
         }
-
 
     //----------CHECKING IF MODS ARE ENABLED UPON LAUNCHING----------//
 
@@ -86,12 +84,12 @@ ModManager::~ModManager()
     delete ui;
 }
 
-//----------REMOVING SYMLINKS UPON CLIKING 'ORIGINAL' BUTTON----------//
+//----------REMOVING HARDLINKS UPON CLIKING 'ORIGINAL' BUTTON----------//
 
 void ModManager::on_mad08_clicked()
 {
         line[0] = '\0';
-        ifstream ModList2 (UserINI_cc);
+        ifstream ModList2 (curINI_qs.toStdString().c_str());
         ModList2.getline(line, 100, ']');
         ModList2.ignore();
         while (line[4] != endlist)
@@ -108,11 +106,11 @@ void ModManager::on_mad08_clicked()
         ui->ModStatus->setStyleSheet("QGraphicsView {background-image: url("":/res/imgs/disabled.png""); }");
 }
 
-//----------CREATING SYMLINKS UPON CLIKING 'MODDED' BUTTON----------//
+//----------CREATING HARDSLINKS UPON CLIKING 'MODDED' BUTTON----------//
 
 void ModManager::on_mad17_clicked()
 {
-        ifstream ModList (UserINI_cc);
+        ifstream ModList (curINI_qs.toStdString().c_str());
         ModList.getline(line, 100, ']');
         ModList.ignore();
         while (line[4] != endlist)
