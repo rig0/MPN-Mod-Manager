@@ -20,6 +20,8 @@ private slots:
 
     void on_mad17_clicked();
 
+    void on_playButton_clicked();
+
 private:
     Ui::ModManager *ui;
 };

@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <sys/stat.h>
 #include <QMessageBox>
+#include <QFileDialog>
 #include <QFile>
 #include <QDir>
 
@@ -92,7 +93,6 @@ ModManager::~ModManager()
 
 void ModManager::on_mad08_clicked()
 {
-        line[0] = '\0';
         ifstream ModList2 (curINI_qs.toStdString().c_str());
         ModList2.getline(line, 100, ']');
         ModList2.ignore();
@@ -108,10 +108,11 @@ void ModManager::on_mad08_clicked()
                 remove(DelSymLink_s.c_str());
             }
         ModList2.close();
+        //Sleep(1000);
         ui->ModStatus->setStyleSheet("QGraphicsView {background-image: url("":/res/imgs/disabled.png""); }");
 }
 
-//----------CREATING HARDSLINKS UPON CLIKING 'MODDED' BUTTON----------//
+//----------CREATING HARDLINKS UPON CLIKING 'MODDED' BUTTON----------//
 
 void ModManager::on_mad17_clicked()
 {
@@ -143,6 +144,90 @@ void ModManager::on_mad17_clicked()
                     CreateHardLinkA(SymLink_cc, TargetLink_cc, 0);
                 }
             ModList.close();
+            //Sleep(1500);
             ui->ModStatus->setStyleSheet("QGraphicsView {background-image: url("":/res/imgs/enabled.png""); }");
         }
+}
+
+//----------VERIFIES MADDEN INSTALL LOCATION THEN LAUNCHES----------//
+
+void ModManager::on_playButton_clicked()
+{
+    QString madINI_qs = curDir_qs + "/madloc.ini";
+
+    if ((int) ShellExecuteA(NULL,"open","C:\\Program Files (x86)\\EA Sports\\Madden NFL 08\\mainapp.exe",NULL,NULL,SW_SHOW) <= 32)
+    {
+        if (FileStatus(madINI_qs.toStdString()) == 0)
+        {
+            QMessageBox msgBox;
+            msgBox.setIconPixmap(QPixmap(":/res/imgs/info.png"));
+            msgBox.setWindowTitle("Just a sec!");
+            msgBox.setText("Madden doesn't appear to be installed in it's default directory. Please point me to your Madden NFL 08 executable (mainapp.exe)");
+            msgBox.exec();
+            QString madLoc = QFileDialog::getOpenFileName(this, tr("Point to 'mainapp.exe' in your Madden directory"), QString(),
+                        tr("Executable (mainapp.exe)"));
+            if (!madLoc.isEmpty())
+            {
+                QFile file(madLoc);
+                    if (!file.open(QIODevice::ReadOnly))
+                    {
+                        QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
+                        return;
+                    }
+                ofstream mlFile;
+                mlFile.open(madINI_qs.toStdString().c_str());
+                mlFile << madLoc.toStdString() << ";" << endl;
+                mlFile.close();
+                file.close();
+            }
+                if (madLoc.isEmpty())
+                {
+                    QMessageBox msgBox;
+                    msgBox.setIconPixmap(QPixmap(":/res/imgs/error.png"));
+                    msgBox.setWindowTitle("Oops...");
+                    msgBox.setText("You didn't choose anything!");
+                    msgBox.exec();
+                }
+        }
+        else if (FileStatus(madINI_qs.toStdString()) != 0)
+        {
+            ifstream MadLocINI (madINI_qs.toStdString().c_str());
+            MadLocINI.getline(line, 100, ';');
+            MadLocINI.ignore();
+            MadLocINI.close();
+            if ((int) ShellExecuteA(NULL,"open",line,NULL,NULL,SW_SHOW) <= 32)
+            {
+                QMessageBox msgBox;
+                msgBox.setIconPixmap(QPixmap(":/res/imgs/info.png"));
+                msgBox.setWindowTitle("Just a sec!");
+                msgBox.setText("It seems you moved your Madden game folder. Please point to the new location of 'mainapp.exe'");
+                msgBox.exec();
+                remove(madINI_qs.toStdString().c_str());
+                QString madLoc = QFileDialog::getOpenFileName(this, tr("Point to 'mainapp.exe' in your Madden directory"), QString(),
+                            tr("Executable (mainapp.exe)"));
+                if (!madLoc.isEmpty())
+                {
+                    QFile file(madLoc);
+                        if (!file.open(QIODevice::ReadOnly))
+                        {
+                            QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
+                            return;
+                        }
+                    ofstream mlFile;
+                    mlFile.open(madINI_qs.toStdString().c_str());
+                    mlFile << madLoc.toStdString()<< ";" << endl;
+                    mlFile.close();
+                    file.close();
+                }
+                    if (madLoc.isEmpty())
+                    {
+                        QMessageBox msgBox;
+                        msgBox.setIconPixmap(QPixmap(":/res/imgs/error.png"));
+                        msgBox.setWindowTitle("Oops...");
+                        msgBox.setText("You didn't choose anything!");
+                        msgBox.exec();
+                    }
+            }
+        }
+    }
 }

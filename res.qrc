@@ -6,10 +6,14 @@
         <file>imgs/17button1.png</file>
         <file>imgs/disabled.png</file>
         <file>imgs/enabled.png</file>
-        <file>imgs/mpnbg.png</file>
-        <file>imgs/mpnbg1.png</file>
         <file>modlist.ini</file>
         <file>imgs/error.png</file>
         <file>imgs/info.png</file>
+        <file>imgs/play0.png</file>
+        <file>imgs/play1.png</file>
+        <file>imgs/play2.png</file>
+        <file>imgs/mpnbg.png</file>
+        <file>imgs/mpnbg1.png</file>
+        <file>imgs/mpnbg2.png</file>
     </qresource>
 </RCC>
