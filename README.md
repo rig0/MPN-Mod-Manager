@@ -1,12 +1,14 @@
 ##--------------------MPN Mod Manager by RamboRigs--------------------
 
-#####Version 1.0.0 (Initial Release)
+**v1.1.0** Added "Play" button that launches Madden
+
+v1.0.0 Initial Release
 
 **How to install:**
 
-1. Extract "MPN-Mod-ManagerV1.0.0.zip" 
+1. Extract "MPN-Mod-ManagerV1.1.0.zip" 
 
-2. Move "Manager" folder to "Documents/Madden NFL 08/Mods/"
+2. Move "Manager" folder to "Documents/Madden NFL 08/Mods/" (Replace files if updating)
 
 3. For easy accessibility you can do do either one of the three:
 
