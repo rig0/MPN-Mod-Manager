@@ -28,6 +28,7 @@ public:
     QPushButton *mad17;
     QPushButton *mad08;
     QGraphicsView *ModStatus;
+    QPushButton *playButton;
 
     void setupUi(QMainWindow *ModManager)
     {
@@ -35,17 +36,17 @@ public:
             ModManager->setObjectName(QStringLiteral("ModManager"));
         ModManager->setWindowModality(Qt::WindowModal);
         ModManager->setEnabled(true);
-        ModManager->resize(550, 275);
+        ModManager->resize(550, 320);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(ModManager->sizePolicy().hasHeightForWidth());
         ModManager->setSizePolicy(sizePolicy);
-        ModManager->setMinimumSize(QSize(550, 275));
-        ModManager->setMaximumSize(QSize(550, 275));
+        ModManager->setMinimumSize(QSize(550, 320));
+        ModManager->setMaximumSize(QSize(550, 320));
         ModManager->setStyleSheet(QLatin1String("QMainWindow#ModManager\n"
 "{\n"
-"   background-image: url(\":/res/imgs/mpnbg1.png\");\n"
+"   background-image: url(\":/res/imgs/mpnbg2.png\");\n"
 "}\n"
 "QGraphicsView#ModStatus\n"
 "{\n"
@@ -72,7 +73,22 @@ public:
 "   background-color:rgba(0, 0, 0, 0);\n"
 "   background-image: url(\":/res/imgs/17button1.png\");\n"
 "}\n"
-""));
+"QPushButton#playButton\n"
+"{\n"
+"   background-color:rgba(0, 0, 0, 0);\n"
+"   background-image: url(\":/res/imgs/play0.png\");\n"
+"}\n"
+"QPushButton:hover#playButton\n"
+"{\n"
+"   background-color:rgba(0, 0, 0, 0);\n"
+"   background-image: url(\":/res/imgs/play1.png\");\n"
+"}\n"
+"QPush"
+                        "Button:pressed#playButton\n"
+"{\n"
+"   background-color:rgba(0, 0, 0, 0);\n"
+"   background-image: url(\":/res/imgs/play2.png\");\n"
+"}"));
         centralWidget = new QWidget(ModManager);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         mad17 = new QPushButton(centralWidget);
@@ -85,6 +101,9 @@ public:
         ModStatus->setObjectName(QStringLiteral("ModStatus"));
         ModStatus->setGeometry(QRect(160, 70, 230, 50));
         ModStatus->setInteractive(true);
+        playButton = new QPushButton(centralWidget);
+        playButton->setObjectName(QStringLiteral("playButton"));
+        playButton->setGeometry(QRect(215, 252, 123, 55));
         ModManager->setCentralWidget(centralWidget);
 
         retranslateUi(ModManager);
@@ -97,6 +116,7 @@ public:
         ModManager->setWindowTitle(QApplication::translate("ModManager", "MPN Mod Manager", 0));
         mad17->setText(QString());
         mad08->setText(QString());
+        playButton->setText(QString());
     } // retranslateUi
 
 };
