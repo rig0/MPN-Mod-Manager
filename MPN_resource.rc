@@ -7,8 +7,8 @@
 IDI_ICON1	ICON	DISCARDABLE	"C:\\Users\\ADMIN\\Documents\\GitHub\\MPN-Mod-Manager - v1.1.0\\mpn.ico"
 
 VS_VERSION_INFO VERSIONINFO
-	FILEVERSION 1,0,0,0
-	PRODUCTVERSION 1,0,0,0
+	FILEVERSION 1,1,0,1
+	PRODUCTVERSION 1,1,0,1
 	FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
 	FILEFLAGS VS_FF_DEBUG
@@ -25,11 +25,11 @@ VS_VERSION_INFO VERSIONINFO
 			BEGIN
 				VALUE "CompanyName", "RAMBO\0"
 				VALUE "FileDescription", "\0"
-				VALUE "FileVersion", "1.0.0.0\0"
+				VALUE "FileVersion", "1.1.0.1\0"
 				VALUE "LegalCopyright", "\0"
-				VALUE "OriginalFilename", "MPN_Mod_Manager.exe\0"
-				VALUE "ProductName", "MPN Mod Manager\0"
-				VALUE "ProductVersion", "1.0.0.0\0"
+				VALUE "OriginalFilename", "MPN.exe\0"
+				VALUE "ProductName", "MPN\0"
+				VALUE "ProductVersion", "1.1.0.1\0"
 			END
 		END
 		BLOCK "VarFileInfo"
